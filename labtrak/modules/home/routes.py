@@ -3,13 +3,19 @@ from flask import render_template, redirect, url_for, flash
 from flask import session, request
 from flask import Blueprint
 
+import random
 
 home_bp = Blueprint('home', __name__, template_folder='templates')
 
 
 @home_bp.route('/')
 def index():
-    return render_template('home.html', session=session)
+    image = random.choice([
+        'http://i.imgur.com/2DEhzOG.jpg',
+        'http://i.imgur.com/GpZbMD7.jpg',
+        'http://i.imgur.com/hBSjwrk.jpg'
+    ])
+    return render_template('home.html', session=session, image=image)
 
 
 @home_bp.route('/register', methods=['GET', 'POST'])

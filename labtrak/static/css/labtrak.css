@@ -7,7 +7,7 @@ form .form-group:last-child{ margin-bottom: 0; }
 
 
 #hero {
-	background: url(http://i.imgur.com/2DEhzOG.jpg) center center no-repeat;
+	background: center center no-repeat;
 	background-size: cover;
 	color: #fff;
 	}
