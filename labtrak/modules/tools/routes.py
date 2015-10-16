@@ -2,6 +2,7 @@ from . import controllers
 from flask import render_template, redirect, url_for
 from flask import Blueprint
 
+import markdown2
 import os
 
 tools_bp = Blueprint('tools', __name__, template_folder='templates')
@@ -20,9 +21,13 @@ def pages(tool=None):
         return redirect(url_for('tools.index'))
     else:
         try:
-            path = os.path.join(os.getcwd(), 'labtrak', 'content', 'tools', tool)
+            path = os.path.join(os.getcwd(), 'labtrak', 'content', 'tools', tool+'.md')
             with open(path) as f:
-                return f.read()
+                text = f.read()
+                content=markdown2.markdown(text)
+                #slice from the second character forward, of the first line
+                title = text.split('/n').pop(0)[2:].strip()
+                return render_template('pages/tool.html', title=title, content=content)
         except FileNotFoundError:
-            print('%s not found.' % path)
+            print('*\n%s not found.\n*' % path)
             return redirect(url_for('tools.index'))
