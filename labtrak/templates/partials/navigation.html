@@ -18,7 +18,7 @@
 				<li><a href="#">Some</a></li>
 				<li><a href="#">Cool</a></li>
 				<li><a href="#">Pages</a></li>
-				<li><a href="#">Here</a></li>
+				<li><a href="{{ url_for('tools.index') }}">Tools</a></li>
 			</ul>
 
 			{% if session['user'] %}

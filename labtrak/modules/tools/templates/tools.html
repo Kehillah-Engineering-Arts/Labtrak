@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block title %}Tools{% endblock %}
+
+{% block body %}
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Laboratory Tools</h3>
+						</div>
+						<div class="panel-body">
+							<table id="tool-table" class="table table-hover">
+								<thead>
+									<tr>
+										<th>Tool</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class='clickable-row' data-href="{{ url_for('tools.pages')+'/3d_printer' }}">
+										<td>3D Printer</td>
+										<td>Available</td>
+									</tr>
+									{% for tool in tools %}
+									<tr class='clickable-row' data-href="{{ url_for('tools.pages')+'/'+tool }}">
+										<td>{{ tool }}</td>
+										<td>Available</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+				</div>
+				<div class="col-md-2">
+				</div>
+			</div>
+		</div>
+{% endblock %}
+
+{% block post_body %}
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+	    $(".clickable-row").click(function() {
+	        window.document.location = $(this).data("href");
+	    });
+		});
+	</script>
+{% endblock %}
